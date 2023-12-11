@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hacking Game</title>
+    <style>
+            body {
+            background-color: #000;
+            color: #0F0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #0F0;
+        }
+
+        .level {
+            background-color: #000;
+            padding: 20px;
+            border: 2px solid #0F0;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #0F0;
+        }
+
+        .instructions {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .prompt {
+            color: #0F0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            background-color: #000;
+            border: 1px solid #0F0;
+            color: #0F0;
+            padding: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #0F0;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #080;
+        }
+
+        #game-container {
+            display: none;
+        }
+
+        .message {
+            color: #0F0;
+            font-size: 18px;
+        }
+
+        #story {
+            font-size: 16px;
+            text-align: left;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hacking Game</h1>
+        <button id="start-button" onclick="startGame()">Start Game</button>
+
+        <div id="game-container">
+            <div class="level" id="level1">
+                <p class="instructions">Level 1: Find the hidden clue to reveal the password.</p>
+                <p class="prompt">> Clue: Look in the source code for the password.</p>
+                <button onclick="checkPassword('password123')">Enter Password</button>
+                <p class="message" id="message1"></p>
+            </div>
+            <div class="level" id="level2">
+                <p class="instructions">Level 2: Solve the math puzzle to get the password.</p>
+                <p class="prompt">> Solve: 5 + 7 * 2</p>
+                <input type="text" id="mathInput">
+                <button onclick="checkMath('password456')">Submit Answer</button>
+                <p class "message" id="message2"></p>
+            </div>
+            <div class="level" id="level3">
+                <p class="instructions">Level 3: Decode the hidden message to find the password.</p>
+                <p class="prompt">> Decipher: poi sthis tcretes</p>
+                <input type="text" id="decodeInput">
+                <button onclick="checkDecode('password789')">Submit Decoded Message</button>
+                <p class="message" id="message3"></p>
+            </div>
+            <div class="level" id="level4">
+                <p class="instructions">Level 4: Solve the riddle to access the system.</p>
+                <p class="prompt">> Riddle: I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?</p>
+                <input type="text" id="riddleInput">
+                <button onclick="checkRiddle('password101')">Submit Answer</button>
+                <p class="message" id="message4"></p>
+            </div>
+            <div class="level" id="level5">
+                <p class="instructions">Level 5: Find the hidden code in the image.</p>
+                <img src="hidden-code.png" alt="Hidden Code">
+                <input type="text" id="imageInput">
+                <button onclick="checkImage('password555')">Submit Code</button>
+                <p class="message" id="message5"></p>
+            </div>
+            <div class="level" id="level6">
+                <p class="instructions">Level 6: Crack the encryption code.</p>
+                <p class="prompt">> Decrypt: %$*#@%&$@!%&^ (Hint: Use a Caesar syphon with a shift of 5 and popular video game saying)</p>
+                <input type="text" id="encryptionInput">
+                <button onclick="checkEncryption('password999')">Submit Decrypted Code</button>
+                <p class="message" id="message6"></p>
+            </div>
+            <div class="level" id="level7">
+                <p class="instructions">Level 7: Unlock the secure vault.</p>
+                <p class="prompt">> Vault Key: 14-25-10-2-6 (Hint: Rearrange the numbers to form a combination)</p>
+                <input type="text" id="vaultInput">
+                <button onclick="checkVault('password777')">Unlock Vault</button>
+                <p class="message" id="message7"></p>
+            </div>
+            <!-- Level 8 -->
+            <div class="level" id="level8">
+                <p class="instructions">Level 8: Bypass the firewall to reveal the final password.</p>
+                <p class="prompt">> Firewall: Break through the firewall to expose the last password.</p>
+                <button onclick="checkFirewall('passwordfinal')">Bypass Firewall</button>
+                <p class="message" id="message8"></p>
+                <div class="story">
+                    <p>You've reached the final challenge. The fate of humanity rests on your ability to break through the toughest firewall and reveal the ultimate password. Hack your way to victory!</p>
+                </div>
+                <div class="level" id="level9">
+                    <p class="instructions">Level 9: Test your JavaScript knowledge to reveal the final password.</p>
+                    <p class="prompt">> JavaScript Question: What is the result of 2 + 2 in JavaScript?</p>
+                    <input type="text" id="javascriptInput">
+                    <button onclick="checkJavaScript('passwordfinal')">Submit Answer</button>
+                    <p class="message" id="message9"></p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="story">
+            <p>Welcome to the world of hacking! You have successfully cracked the system. As you advance through the levels, you uncover a conspiracy that leads you on an exciting journey. Your hacking skills will be put to the test as you work to expose the truth.</p>
+            <p>Stay tuned for more adventures in the next release!</p>
+        </div>
+    </div>
+
+    <script>
+        let currentLevel = 0;
+
+        function startGame() {
+            document.getElementById('start-button').style.display = 'none';
+            document.getElementById('game-container').style.display = 'block';
+            currentLevel = 1;
+            activateLevel(currentLevel);
+        }
+
+        function activateLevel(level) {
+            for (let i = 1; i <= 7; i++) {
+                document.getElementById(`level${i}`).style.display = 'none';
+            }
+
+            document.getElementById(`level${level}`).style.display = 'block';
+        }
+
+        function checkPassword(password) {
+            const userInput = prompt("Enter the password:");
+            const messageElement = document.getElementById(`message${currentLevel}`);
+
+            if (userInput === password) {
+                messageElement.textContent = "Access granted. Proceed to the next level!";
+                currentLevel++;
+                if (currentLevel <= 7) {
+                    activateLevel(currentLevel);
+                } else {
+                    document.getElementById('story').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none';
+                }
+            } else {
+                messageElement.textContent = "Incorrect password. Try again.";
+            }
+        }
+
+        function checkMath(password) {
+            const userInput = document.getElementById("mathInput").value;
+            const messageElement = document.getElementById(`message${currentLevel}`);
+
+            if (userInput === "19") { // 5 + 7 * 2 = 5 + 14 = 19
+                messageElement.textContent = "Correct! Access granted. Proceed to the next level!";
+                currentLevel++;
+                if (currentLevel <= 7) {
+                    activateLevel(currentLevel);
+                } else {
+                    document.getElementById('story').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none';
+                }
+            } else {
+                messageElement.textContent = "Incorrect answer. Try again.";
+            }
+        }
+
+        function checkDecode(password) {
+            const userInput = document.getElementById("decodeInput").value;
+            const messageElement = document.getElementById(`message${currentLevel}`);
+
+            if (userInput === "This Is Top Secret") {
+                messageElement.textContent = "Correct! Access granted. Proceed to the next level!";
+                currentLevel++;
+                if (currentLevel <= 7) {
+                    activateLevel(currentLevel);
+                } else {
+                    document.getElementById('story').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none';
+                }
+            } else {
+                messageElement.textContent = "Incorrect message. Try again.";
+            }
+        }
+
+        function checkRiddle(password) {
+            const userInput = document.getElementById("riddleInput").value.toLowerCase();
+            const messageElement = document.getElementById(`message${currentLevel}`);
+
+            if (userInput === "an echo") {
+                messageElement.textContent = "Correct! Access granted. Proceed to the next level!";
+                currentLevel++;
+                if (currentLevel <= 7) {
+                    activateLevel(currentLevel);
+                } else {
+                    document.getElementById('story').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none';
+                }
+            } else {
+                messageElement.textContent = "Incorrect answer. Try again.";
+            }
+        }
+
+        function checkImage(password) {
+            const userInput = document.getElementById("imageInput").value;
+            const messageElement = document.getElementById(`message${currentLevel}`);
+
+            if (userInput === "broken") {
+                messageElement.textContent = "Access granted. Proceed to the next level!";
+                currentLevel++;
+                if (currentLevel <= 7) {
+                    activateLevel(currentLevel);
+                } else {
+                    document.getElementById('story').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none';
+                }
+            } else {
+                messageElement.textContent = "Incorrect code. Try again.";
+            }
+        }
+
+        function checkEncryption(password) {
+            const userInput = document.getElementById("encryptionInput").value.toLowerCase();
+            const messageElement = document.getElementById(`message${currentLevel}`);
+
+            if (userInput === "the cake is a lie") {
+                messageElement.textContent = "Correct! Access granted. Proceed to the next level!";
+                currentLevel++;
+                if (currentLevel <= 7) {
+                    activateLevel(currentLevel);
+                } else {
+                    document.getElementById('story').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none';
+                }
+            } else {
+                messageElement.textContent = "Incorrect code. Try again.";
+            }
+        }
+
+        function checkVault(password) {
+            const userInput = document.getElementById("vaultInput").value;
+            const messageElement = document.getElementById(`message${currentLevel}`);
+
+            if (userInput === "10-25-6-2-14") {
+                messageElement.textContent = "Correct! Access granted. You've unlocked the vault!";
+                currentLevel++;
+                if (currentLevel <= 7) {
+                    activateLevel(currentLevel);
+                } else {
+                    document.getElementById('story').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none';
+                }
+            } else {
+                messageElement.textContent = "Incorrect combination. Try again.";
+            }
+        }
+        function activateLevel(level) {
+    for (let i = 1; i <= 9; i++) {
+        document.getElementById(`level${i}`).style.display = 'none';
+    }
+
+    document.getElementById(`level${level}`).style.display = 'block';
+}
+        // Add functions for checking answers, such as checkFirewall, checkLevel9, etc.
+
+        function checkFirewall(password) {
+            const userInput = prompt("Enter the password to bypass the firewall:");
+            const messageElement = document.getElementById(`message8`);
+
+            if (userInput === password) {
+                messageElement.textContent = "Congratulations! You've bypassed the firewall and completed the game!";
+                score += 100; // Award points for completing the game.
+                displayScore();
+                document.getElementById('story').style.display = 'block';
+                document.getElementById('game-container').style.display = 'none';
+            } else {
+                messageElement.textContent = "Firewall breach failed. Try again.";
+            }
+        }
+        function checkJavaScript(password) {
+    const userInput = document.getElementById("javascriptInput").value;
+    const messageElement = document.getElementById(`message9`);
+
+    if (userInput === "4") {
+        messageElement.textContent = "Correct! Access granted. You've completed all the levels!";
+        currentLevel++;
+        activateLevel(currentLevel);
+    } else {
+        messageElement.textContent = "Incorrect answer. Try again.";
+    }
+}
+        function displayScore() {
+            alert(`Your final score is: ${score}`);
+        }
+    </script>
+</body>
+</html>
